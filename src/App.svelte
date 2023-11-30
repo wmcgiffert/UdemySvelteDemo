@@ -1,5 +1,10 @@
 <script>
-	export let name;
+	let name = 'Garrett'
+	let age = 33;
+
+	function incrementAge(){
+		age += 1;
+	}
 </script>
 
 <style>
@@ -8,4 +13,5 @@
 	}
 </style>
 
-<h1>Hello {name}!</h1>
+<h1>Hello I am {name}, and I {age} years old!</h1>
+<button on:click={incrementAge}>Change age</button>

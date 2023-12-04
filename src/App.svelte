@@ -20,8 +20,8 @@
 
 <h1>Hello I am {upppercaseName}, and I {age} years old!</h1>
 <button on:click={incrementAge}>Change age</button>
-<button on:click={changeName}>Change Name</button>
-
+<!-- <button on:click={changeName}>Change Name</button> -->
+<input type="text" value={name} on:input >
 <style>
 	h1 {
 		color: purple;

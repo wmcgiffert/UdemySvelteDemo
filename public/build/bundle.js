@@ -76,6 +76,16 @@ var app = (function () {
     function set_current_component(component) {
         current_component = component;
     }
+    // TODO figure out if we still want to support
+    // shorthand events, or if we want to implement
+    // a real bubbling mechanism
+    function bubble(component, event) {
+        const callbacks = component.$$.callbacks[event.type];
+        if (callbacks) {
+            // @ts-ignore
+            callbacks.slice().forEach(fn => fn.call(this, event));
+        }
+    }
 
     const dirty_components = [];
     const binding_callbacks = [];
@@ -359,6 +369,10 @@ var app = (function () {
         else
             dispatch_dev('SvelteDOMSetAttribute', { node, attribute, value });
     }
+    function prop_dev(node, property, value) {
+        node[property] = value;
+        dispatch_dev('SvelteDOMSetProperty', { node, property, value });
+    }
     function set_data_dev(text, data) {
         data = '' + data;
         if (text.data === data)
@@ -406,9 +420,9 @@ var app = (function () {
     	let t3;
     	let t4;
     	let t5;
-    	let button0;
+    	let button;
     	let t7;
-    	let button1;
+    	let input;
     	let mounted;
     	let dispose;
 
@@ -416,20 +430,21 @@ var app = (function () {
     		c: function create() {
     			h1 = element("h1");
     			t0 = text("Hello I am ");
-    			t1 = text(/*upppercaseName*/ ctx[1]);
+    			t1 = text(/*upppercaseName*/ ctx[2]);
     			t2 = text(", and I ");
-    			t3 = text(/*age*/ ctx[0]);
+    			t3 = text(/*age*/ ctx[1]);
     			t4 = text(" years old!");
     			t5 = space();
-    			button0 = element("button");
-    			button0.textContent = "Change age";
+    			button = element("button");
+    			button.textContent = "Change age";
     			t7 = space();
-    			button1 = element("button");
-    			button1.textContent = "Change Name";
+    			input = element("input");
     			attr_dev(h1, "class", "svelte-i7qo5m");
     			add_location(h1, file, 20, 0, 258);
-    			add_location(button0, file, 21, 0, 319);
-    			add_location(button1, file, 22, 0, 371);
+    			add_location(button, file, 21, 0, 319);
+    			attr_dev(input, "type", "text");
+    			input.value = /*name*/ ctx[0];
+    			add_location(input, file, 23, 0, 431);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -442,31 +457,35 @@ var app = (function () {
     			append_dev(h1, t3);
     			append_dev(h1, t4);
     			insert_dev(target, t5, anchor);
-    			insert_dev(target, button0, anchor);
+    			insert_dev(target, button, anchor);
     			insert_dev(target, t7, anchor);
-    			insert_dev(target, button1, anchor);
+    			insert_dev(target, input, anchor);
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*incrementAge*/ ctx[2], false, false, false, false),
-    					listen_dev(button1, "click", /*changeName*/ ctx[3], false, false, false, false)
+    					listen_dev(button, "click", /*incrementAge*/ ctx[3], false, false, false, false),
+    					listen_dev(input, "input", /*input_handler*/ ctx[4], false, false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*upppercaseName*/ 2) set_data_dev(t1, /*upppercaseName*/ ctx[1]);
-    			if (dirty & /*age*/ 1) set_data_dev(t3, /*age*/ ctx[0]);
+    			if (dirty & /*upppercaseName*/ 4) set_data_dev(t1, /*upppercaseName*/ ctx[2]);
+    			if (dirty & /*age*/ 2) set_data_dev(t3, /*age*/ ctx[1]);
+
+    			if (dirty & /*name*/ 1 && input.value !== /*name*/ ctx[0]) {
+    				prop_dev(input, "value", /*name*/ ctx[0]);
+    			}
     		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(h1);
     			if (detaching) detach_dev(t5);
-    			if (detaching) detach_dev(button0);
+    			if (detaching) detach_dev(button);
     			if (detaching) detach_dev(t7);
-    			if (detaching) detach_dev(button1);
+    			if (detaching) detach_dev(input);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -491,11 +510,11 @@ var app = (function () {
     	let age = 33;
 
     	function incrementAge() {
-    		$$invalidate(0, age += 1);
+    		$$invalidate(1, age += 1);
     	}
 
     	function changeName() {
-    		$$invalidate(4, name = "William");
+    		$$invalidate(0, name = "William");
     	}
 
     	const writable_props = [];
@@ -503,6 +522,10 @@ var app = (function () {
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
+
+    	function input_handler(event) {
+    		bubble.call(this, $$self, event);
+    	}
 
     	$$self.$capture_state = () => ({
     		name,
@@ -513,9 +536,9 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('name' in $$props) $$invalidate(4, name = $$props.name);
-    		if ('age' in $$props) $$invalidate(0, age = $$props.age);
-    		if ('upppercaseName' in $$props) $$invalidate(1, upppercaseName = $$props.upppercaseName);
+    		if ('name' in $$props) $$invalidate(0, name = $$props.name);
+    		if ('age' in $$props) $$invalidate(1, age = $$props.age);
+    		if ('upppercaseName' in $$props) $$invalidate(2, upppercaseName = $$props.upppercaseName);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -523,22 +546,22 @@ var app = (function () {
     	}
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*name*/ 16) {
-    			$$invalidate(1, upppercaseName = name.toUpperCase());
+    		if ($$self.$$.dirty & /*name*/ 1) {
+    			$$invalidate(2, upppercaseName = name.toUpperCase());
     		}
 
-    		if ($$self.$$.dirty & /*name*/ 16) {
+    		if ($$self.$$.dirty & /*name*/ 1) {
     			console.log(name);
     		}
 
-    		if ($$self.$$.dirty & /*name*/ 16) {
+    		if ($$self.$$.dirty & /*name*/ 1) {
     			if (name === 'William') {
-    				$$invalidate(0, age = 33);
+    				$$invalidate(1, age = 33);
     			}
     		}
     	};
 
-    	return [age, upppercaseName, incrementAge, changeName, name];
+    	return [name, age, upppercaseName, incrementAge, input_handler];
     }
 
     class App extends SvelteComponentDev {

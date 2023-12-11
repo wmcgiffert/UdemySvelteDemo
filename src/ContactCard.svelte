@@ -7,7 +7,7 @@
 
 <div class="contact-card">
   <header>
-    <div class="thumb">
+    <div class={profPic ? 'thumb': 'thumb thumb-palceHolder'}>
       <img src={profPic} alt="Profile" />
     </div>
     <div class="user-data">
@@ -16,7 +16,7 @@
     </div>
   </header>
   <div class="description">
-    <p>{@html jobDescription}</p>
+    <p>{jobDescription}</p>
   </div>
 </div>
 
@@ -43,7 +43,11 @@
     align-items: center;
     overflow: hidden;
   }
-
+  
+  .thumb-palceHolder {
+    background-color: #ccc;
+  }
+  
   img {
     width: 100%;
     height: 100%;

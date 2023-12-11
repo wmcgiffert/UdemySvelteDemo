@@ -5,6 +5,7 @@
   let age = 33;
   let jobTitle = "Software Dev";
   let profPic = "https://resize.betalist.com/?dpr=2&fit=cover&format=auto&height=300&image=https%3A%2F%2Fcdn.betalist.com%2Fxuulgvf5hmtho0aent23szhnm9hj&signature=c0a1d28b02e9d47b8316a8750e97fbf025467e5e7f6801564cf7c5ec983aa67b";
+  
   let jobDescription =
     "Fullstack engineer with 5 years experience and 5 years experience in public accounting. Graduated the University of Alabama (2014 & 2021) in Accounting and Management Information Systems. Also has a Master of Accountancy from Belmont University (2016)";
 

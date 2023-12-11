@@ -35,6 +35,9 @@ var app = (function () {
     function is_empty(obj) {
         return Object.keys(obj).length === 0;
     }
+    function null_to_empty(value) {
+        return value == null ? '' : value;
+    }
 
     const globals = (typeof window !== 'undefined'
         ? window
@@ -447,6 +450,7 @@ var app = (function () {
     	let div0;
     	let img;
     	let img_src_value;
+    	let div0_class_value;
     	let t0;
     	let div1;
     	let h1;
@@ -457,6 +461,7 @@ var app = (function () {
     	let t4;
     	let div2;
     	let p;
+    	let t5;
 
     	const block = {
     		c: function create() {
@@ -474,24 +479,25 @@ var app = (function () {
     			t4 = space();
     			div2 = element("div");
     			p = element("p");
+    			t5 = text(/*jobDescription*/ ctx[3]);
     			if (!src_url_equal(img.src, img_src_value = /*profPic*/ ctx[2])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Profile");
-    			attr_dev(img, "class", "svelte-1pdt6l2");
-    			add_location(img, file$1, 10, 6, 185);
-    			attr_dev(div0, "class", "thumb svelte-1pdt6l2");
+    			attr_dev(img, "class", "svelte-1qr1iil");
+    			add_location(img, file$1, 10, 6, 224);
+    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(/*profPic*/ ctx[2] ? 'thumb' : 'thumb thumb-palceHolder') + " svelte-1qr1iil"));
     			add_location(div0, file$1, 9, 4, 159);
-    			attr_dev(h1, "class", "svelte-1pdt6l2");
-    			add_location(h1, file$1, 13, 6, 266);
-    			attr_dev(h2, "class", "svelte-1pdt6l2");
-    			add_location(h2, file$1, 14, 6, 292);
-    			attr_dev(div1, "class", "user-data svelte-1pdt6l2");
-    			add_location(div1, file$1, 12, 4, 236);
-    			attr_dev(header, "class", "svelte-1pdt6l2");
+    			attr_dev(h1, "class", "svelte-1qr1iil");
+    			add_location(h1, file$1, 13, 6, 305);
+    			attr_dev(h2, "class", "svelte-1qr1iil");
+    			add_location(h2, file$1, 14, 6, 331);
+    			attr_dev(div1, "class", "user-data svelte-1qr1iil");
+    			add_location(div1, file$1, 12, 4, 275);
+    			attr_dev(header, "class", "svelte-1qr1iil");
     			add_location(header, file$1, 8, 2, 146);
-    			add_location(p, file$1, 18, 4, 367);
-    			attr_dev(div2, "class", "description svelte-1pdt6l2");
-    			add_location(div2, file$1, 17, 2, 337);
-    			attr_dev(div3, "class", "contact-card svelte-1pdt6l2");
+    			add_location(p, file$1, 18, 4, 406);
+    			attr_dev(div2, "class", "description svelte-1qr1iil");
+    			add_location(div2, file$1, 17, 2, 376);
+    			attr_dev(div3, "class", "contact-card svelte-1qr1iil");
     			add_location(div3, file$1, 7, 0, 117);
     		},
     		l: function claim(nodes) {
@@ -512,16 +518,21 @@ var app = (function () {
     			append_dev(div3, t4);
     			append_dev(div3, div2);
     			append_dev(div2, p);
-    			p.innerHTML = /*jobDescription*/ ctx[3];
+    			append_dev(p, t5);
     		},
     		p: function update(ctx, [dirty]) {
     			if (dirty & /*profPic*/ 4 && !src_url_equal(img.src, img_src_value = /*profPic*/ ctx[2])) {
     				attr_dev(img, "src", img_src_value);
     			}
 
+    			if (dirty & /*profPic*/ 4 && div0_class_value !== (div0_class_value = "" + (null_to_empty(/*profPic*/ ctx[2] ? 'thumb' : 'thumb thumb-palceHolder') + " svelte-1qr1iil"))) {
+    				attr_dev(div0, "class", div0_class_value);
+    			}
+
     			if (dirty & /*userName*/ 1) set_data_dev(t1, /*userName*/ ctx[0]);
     			if (dirty & /*jobTitle*/ 2) set_data_dev(t3, /*jobTitle*/ ctx[1]);
-    			if (dirty & /*jobDescription*/ 8) p.innerHTML = /*jobDescription*/ ctx[3];		},
+    			if (dirty & /*jobDescription*/ 8) set_data_dev(t5, /*jobDescription*/ ctx[3]);
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -740,33 +751,33 @@ var app = (function () {
     			t19 = space();
     			create_component(contactcard.$$.fragment);
     			attr_dev(h1, "class", "svelte-1o13wxz");
-    			add_location(h1, file, 26, 0, 893);
-    			add_location(button, file, 27, 0, 954);
+    			add_location(h1, file, 27, 0, 896);
+    			add_location(button, file, 28, 0, 957);
     			attr_dev(span0, "class", "svelte-1o13wxz");
-    			add_location(span0, file, 30, 2, 1015);
+    			add_location(span0, file, 31, 2, 1018);
     			attr_dev(input0, "type", "text");
-    			add_location(input0, file, 31, 2, 1037);
+    			add_location(input0, file, 32, 2, 1040);
     			attr_dev(div0, "class", "svelte-1o13wxz");
-    			add_location(div0, file, 29, 0, 1007);
+    			add_location(div0, file, 30, 0, 1010);
     			attr_dev(span1, "class", "svelte-1o13wxz");
-    			add_location(span1, file, 34, 2, 1101);
+    			add_location(span1, file, 35, 2, 1104);
     			attr_dev(input1, "type", "text");
-    			add_location(input1, file, 35, 2, 1128);
+    			add_location(input1, file, 36, 2, 1131);
     			attr_dev(div1, "class", "svelte-1o13wxz");
-    			add_location(div1, file, 33, 0, 1093);
+    			add_location(div1, file, 34, 0, 1096);
     			attr_dev(span2, "class", "svelte-1o13wxz");
-    			add_location(span2, file, 38, 2, 1196);
+    			add_location(span2, file, 39, 2, 1199);
     			attr_dev(input2, "type", "text");
-    			add_location(input2, file, 39, 2, 1233);
+    			add_location(input2, file, 40, 2, 1236);
     			attr_dev(div2, "class", "svelte-1o13wxz");
-    			add_location(div2, file, 37, 0, 1188);
+    			add_location(div2, file, 38, 0, 1191);
     			attr_dev(span3, "class", "svelte-1o13wxz");
-    			add_location(span3, file, 42, 2, 1300);
+    			add_location(span3, file, 43, 2, 1303);
     			attr_dev(textarea, "rows", "5");
     			attr_dev(textarea, "cols", "50");
-    			add_location(textarea, file, 43, 2, 1333);
+    			add_location(textarea, file, 44, 2, 1336);
     			attr_dev(div3, "class", "svelte-1o13wxz");
-    			add_location(div3, file, 41, 0, 1292);
+    			add_location(div3, file, 42, 0, 1295);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");

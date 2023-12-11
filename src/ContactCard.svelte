@@ -7,7 +7,7 @@
 
 <div class="contact-card">
   <header>
-    <div class={profPic ? 'thumb': 'thumb thumb-palceHolder'}>
+    <div class='thumb' class:thumb-palceHolder={!profPic}>
       <img src={profPic} alt="Profile" />
     </div>
     <div class="user-data">

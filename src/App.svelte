@@ -1,11 +1,11 @@
 <script>
-	export let name;
+	import Output from "./Output.svelte";
+
+	let goal = "please enter course goal";
 </script>
 
-<style>
-	h1 {
-		color: purple;
-	}
-</style>
-
-<h1>Hello {name}!</h1>
+<div>
+	<span>Course Goal: </span>
+	<textarea rows="3" cols="20" bind:value={goal}></textarea>
+</div>
+<Output {goal} />

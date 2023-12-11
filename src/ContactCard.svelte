@@ -1,22 +1,22 @@
 <script>
-  export let userName = "William";
+  export let userName;
+  export let jobTitle;
+  export let profPic;
+  export let jobDescription;
 </script>
 
 <div class="contact-card">
   <header>
     <div class="thumb">
-      <img
-        src="https://resize.betalist.com/?dpr=2&fit=cover&format=auto&height=300&image=https%3A%2F%2Fcdn.betalist.com%2Fxuulgvf5hmtho0aent23szhnm9hj&signature=c0a1d28b02e9d47b8316a8750e97fbf025467e5e7f6801564cf7c5ec983aa67b"
-        alt="placeholder"
-      />
+      <img src={profPic} alt="Profile" />
     </div>
     <div class="user-data">
       <h1>{userName}</h1>
-      <h2>Software Engineer</h2>
+      <h2>{jobTitle}</h2>
     </div>
   </header>
   <div class="description">
-    <p>A short description</p>
+    <p>{@html jobDescription}</p>
   </div>
 </div>
 

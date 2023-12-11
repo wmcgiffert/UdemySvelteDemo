@@ -453,6 +453,7 @@ var app = (function () {
     	let t1;
     	let t2;
     	let h2;
+    	let t3;
     	let t4;
     	let div2;
     	let p;
@@ -469,30 +470,29 @@ var app = (function () {
     			t1 = text(/*userName*/ ctx[0]);
     			t2 = space();
     			h2 = element("h2");
-    			h2.textContent = "Software Engineer";
+    			t3 = text(/*jobTitle*/ ctx[1]);
     			t4 = space();
     			div2 = element("div");
     			p = element("p");
-    			p.textContent = "A short description";
-    			if (!src_url_equal(img.src, img_src_value = "https://resize.betalist.com/?dpr=2&fit=cover&format=auto&height=300&image=https%3A%2F%2Fcdn.betalist.com%2Fxuulgvf5hmtho0aent23szhnm9hj&signature=c0a1d28b02e9d47b8316a8750e97fbf025467e5e7f6801564cf7c5ec983aa67b")) attr_dev(img, "src", img_src_value);
-    			attr_dev(img, "alt", "placeholder");
+    			if (!src_url_equal(img.src, img_src_value = /*profPic*/ ctx[2])) attr_dev(img, "src", img_src_value);
+    			attr_dev(img, "alt", "Profile");
     			attr_dev(img, "class", "svelte-1pdt6l2");
-    			add_location(img, file$1, 7, 6, 123);
+    			add_location(img, file$1, 10, 6, 185);
     			attr_dev(div0, "class", "thumb svelte-1pdt6l2");
-    			add_location(div0, file$1, 6, 4, 97);
+    			add_location(div0, file$1, 9, 4, 159);
     			attr_dev(h1, "class", "svelte-1pdt6l2");
-    			add_location(h1, file$1, 13, 6, 433);
+    			add_location(h1, file$1, 13, 6, 266);
     			attr_dev(h2, "class", "svelte-1pdt6l2");
-    			add_location(h2, file$1, 14, 6, 459);
+    			add_location(h2, file$1, 14, 6, 292);
     			attr_dev(div1, "class", "user-data svelte-1pdt6l2");
-    			add_location(div1, file$1, 12, 4, 403);
+    			add_location(div1, file$1, 12, 4, 236);
     			attr_dev(header, "class", "svelte-1pdt6l2");
-    			add_location(header, file$1, 5, 2, 84);
-    			add_location(p, file$1, 18, 4, 541);
+    			add_location(header, file$1, 8, 2, 146);
+    			add_location(p, file$1, 18, 4, 367);
     			attr_dev(div2, "class", "description svelte-1pdt6l2");
-    			add_location(div2, file$1, 17, 2, 511);
+    			add_location(div2, file$1, 17, 2, 337);
     			attr_dev(div3, "class", "contact-card svelte-1pdt6l2");
-    			add_location(div3, file$1, 4, 0, 55);
+    			add_location(div3, file$1, 7, 0, 117);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -508,13 +508,20 @@ var app = (function () {
     			append_dev(h1, t1);
     			append_dev(div1, t2);
     			append_dev(div1, h2);
+    			append_dev(h2, t3);
     			append_dev(div3, t4);
     			append_dev(div3, div2);
     			append_dev(div2, p);
+    			p.innerHTML = /*jobDescription*/ ctx[3];
     		},
     		p: function update(ctx, [dirty]) {
+    			if (dirty & /*profPic*/ 4 && !src_url_equal(img.src, img_src_value = /*profPic*/ ctx[2])) {
+    				attr_dev(img, "src", img_src_value);
+    			}
+
     			if (dirty & /*userName*/ 1) set_data_dev(t1, /*userName*/ ctx[0]);
-    		},
+    			if (dirty & /*jobTitle*/ 2) set_data_dev(t3, /*jobTitle*/ ctx[1]);
+    			if (dirty & /*jobDescription*/ 8) p.innerHTML = /*jobDescription*/ ctx[3];		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -536,8 +543,30 @@ var app = (function () {
     function instance$1($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('ContactCard', slots, []);
-    	let { userName = "William" } = $$props;
-    	const writable_props = ['userName'];
+    	let { userName } = $$props;
+    	let { jobTitle } = $$props;
+    	let { profPic } = $$props;
+    	let { jobDescription } = $$props;
+
+    	$$self.$$.on_mount.push(function () {
+    		if (userName === undefined && !('userName' in $$props || $$self.$$.bound[$$self.$$.props['userName']])) {
+    			console.warn("<ContactCard> was created without expected prop 'userName'");
+    		}
+
+    		if (jobTitle === undefined && !('jobTitle' in $$props || $$self.$$.bound[$$self.$$.props['jobTitle']])) {
+    			console.warn("<ContactCard> was created without expected prop 'jobTitle'");
+    		}
+
+    		if (profPic === undefined && !('profPic' in $$props || $$self.$$.bound[$$self.$$.props['profPic']])) {
+    			console.warn("<ContactCard> was created without expected prop 'profPic'");
+    		}
+
+    		if (jobDescription === undefined && !('jobDescription' in $$props || $$self.$$.bound[$$self.$$.props['jobDescription']])) {
+    			console.warn("<ContactCard> was created without expected prop 'jobDescription'");
+    		}
+    	});
+
+    	const writable_props = ['userName', 'jobTitle', 'profPic', 'jobDescription'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ContactCard> was created with unknown prop '${key}'`);
@@ -545,25 +574,42 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ('userName' in $$props) $$invalidate(0, userName = $$props.userName);
+    		if ('jobTitle' in $$props) $$invalidate(1, jobTitle = $$props.jobTitle);
+    		if ('profPic' in $$props) $$invalidate(2, profPic = $$props.profPic);
+    		if ('jobDescription' in $$props) $$invalidate(3, jobDescription = $$props.jobDescription);
     	};
 
-    	$$self.$capture_state = () => ({ userName });
+    	$$self.$capture_state = () => ({
+    		userName,
+    		jobTitle,
+    		profPic,
+    		jobDescription
+    	});
 
     	$$self.$inject_state = $$props => {
     		if ('userName' in $$props) $$invalidate(0, userName = $$props.userName);
+    		if ('jobTitle' in $$props) $$invalidate(1, jobTitle = $$props.jobTitle);
+    		if ('profPic' in $$props) $$invalidate(2, profPic = $$props.profPic);
+    		if ('jobDescription' in $$props) $$invalidate(3, jobDescription = $$props.jobDescription);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [userName];
+    	return [userName, jobTitle, profPic, jobDescription];
     }
 
     class ContactCard extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { userName: 0 });
+
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, {
+    			userName: 0,
+    			jobTitle: 1,
+    			profPic: 2,
+    			jobDescription: 3
+    		});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -578,6 +624,30 @@ var app = (function () {
     	}
 
     	set userName(value) {
+    		throw new Error("<ContactCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get jobTitle() {
+    		throw new Error("<ContactCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set jobTitle(value) {
+    		throw new Error("<ContactCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get profPic() {
+    		throw new Error("<ContactCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set profPic(value) {
+    		throw new Error("<ContactCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get jobDescription() {
+    		throw new Error("<ContactCard>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set jobDescription(value) {
     		throw new Error("<ContactCard>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -597,19 +667,46 @@ var app = (function () {
     	let t5;
     	let button;
     	let t7;
-    	let input;
-    	let t8;
+    	let div0;
+    	let span0;
+    	let t9;
+    	let input0;
+    	let t10;
+    	let div1;
+    	let span1;
+    	let t12;
+    	let input1;
+    	let t13;
+    	let div2;
+    	let span2;
+    	let t15;
+    	let input2;
+    	let t16;
+    	let div3;
+    	let span3;
+    	let t18;
+    	let textarea;
+    	let t19;
     	let contactcard;
     	let current;
     	let mounted;
     	let dispose;
-    	contactcard = new ContactCard({ $$inline: true });
+
+    	contactcard = new ContactCard({
+    			props: {
+    				userName: /*name*/ ctx[0],
+    				jobTitle: /*jobTitle*/ ctx[2],
+    				profPic: /*profPic*/ ctx[3],
+    				jobDescription: /*jobDescription*/ ctx[4]
+    			},
+    			$$inline: true
+    		});
 
     	const block = {
     		c: function create() {
     			h1 = element("h1");
     			t0 = text("Hello I am ");
-    			t1 = text(/*upppercaseName*/ ctx[2]);
+    			t1 = text(/*upppercaseName*/ ctx[5]);
     			t2 = text(", and I ");
     			t3 = text(/*age*/ ctx[1]);
     			t4 = text(" years old!");
@@ -617,14 +714,59 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Change age";
     			t7 = space();
-    			input = element("input");
-    			t8 = space();
+    			div0 = element("div");
+    			span0 = element("span");
+    			span0.textContent = "Name:";
+    			t9 = space();
+    			input0 = element("input");
+    			t10 = space();
+    			div1 = element("div");
+    			span1 = element("span");
+    			span1.textContent = "Job Title:";
+    			t12 = space();
+    			input1 = element("input");
+    			t13 = space();
+    			div2 = element("div");
+    			span2 = element("span");
+    			span2.textContent = "Profile Picture URL:";
+    			t15 = space();
+    			input2 = element("input");
+    			t16 = space();
+    			div3 = element("div");
+    			span3 = element("span");
+    			span3.textContent = "Job Description:";
+    			t18 = space();
+    			textarea = element("textarea");
+    			t19 = space();
     			create_component(contactcard.$$.fragment);
-    			attr_dev(h1, "class", "svelte-1ucbz36");
-    			add_location(h1, file, 22, 0, 348);
-    			add_location(button, file, 23, 0, 409);
-    			attr_dev(input, "type", "text");
-    			add_location(input, file, 25, 0, 521);
+    			attr_dev(h1, "class", "svelte-1o13wxz");
+    			add_location(h1, file, 26, 0, 893);
+    			add_location(button, file, 27, 0, 954);
+    			attr_dev(span0, "class", "svelte-1o13wxz");
+    			add_location(span0, file, 30, 2, 1015);
+    			attr_dev(input0, "type", "text");
+    			add_location(input0, file, 31, 2, 1037);
+    			attr_dev(div0, "class", "svelte-1o13wxz");
+    			add_location(div0, file, 29, 0, 1007);
+    			attr_dev(span1, "class", "svelte-1o13wxz");
+    			add_location(span1, file, 34, 2, 1101);
+    			attr_dev(input1, "type", "text");
+    			add_location(input1, file, 35, 2, 1128);
+    			attr_dev(div1, "class", "svelte-1o13wxz");
+    			add_location(div1, file, 33, 0, 1093);
+    			attr_dev(span2, "class", "svelte-1o13wxz");
+    			add_location(span2, file, 38, 2, 1196);
+    			attr_dev(input2, "type", "text");
+    			add_location(input2, file, 39, 2, 1233);
+    			attr_dev(div2, "class", "svelte-1o13wxz");
+    			add_location(div2, file, 37, 0, 1188);
+    			attr_dev(span3, "class", "svelte-1o13wxz");
+    			add_location(span3, file, 42, 2, 1300);
+    			attr_dev(textarea, "rows", "5");
+    			attr_dev(textarea, "cols", "50");
+    			add_location(textarea, file, 43, 2, 1333);
+    			attr_dev(div3, "class", "svelte-1o13wxz");
+    			add_location(div3, file, 41, 0, 1292);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -639,29 +781,74 @@ var app = (function () {
     			insert_dev(target, t5, anchor);
     			insert_dev(target, button, anchor);
     			insert_dev(target, t7, anchor);
-    			insert_dev(target, input, anchor);
-    			set_input_value(input, /*name*/ ctx[0]);
-    			insert_dev(target, t8, anchor);
+    			insert_dev(target, div0, anchor);
+    			append_dev(div0, span0);
+    			append_dev(div0, t9);
+    			append_dev(div0, input0);
+    			set_input_value(input0, /*name*/ ctx[0]);
+    			insert_dev(target, t10, anchor);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, span1);
+    			append_dev(div1, t12);
+    			append_dev(div1, input1);
+    			set_input_value(input1, /*jobTitle*/ ctx[2]);
+    			insert_dev(target, t13, anchor);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, span2);
+    			append_dev(div2, t15);
+    			append_dev(div2, input2);
+    			set_input_value(input2, /*profPic*/ ctx[3]);
+    			insert_dev(target, t16, anchor);
+    			insert_dev(target, div3, anchor);
+    			append_dev(div3, span3);
+    			append_dev(div3, t18);
+    			append_dev(div3, textarea);
+    			set_input_value(textarea, /*jobDescription*/ ctx[4]);
+    			insert_dev(target, t19, anchor);
     			mount_component(contactcard, target, anchor);
     			current = true;
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button, "click", /*incrementAge*/ ctx[3], false, false, false, false),
-    					listen_dev(input, "input", /*input_input_handler*/ ctx[5]),
-    					listen_dev(input, "input", /*input_handler*/ ctx[4], false, false, false, false)
+    					listen_dev(button, "click", /*incrementAge*/ ctx[6], false, false, false, false),
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[10]),
+    					listen_dev(input0, "input", /*input_handler*/ ctx[9], false, false, false, false),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[11]),
+    					listen_dev(input1, "input", /*input_handler_1*/ ctx[8], false, false, false, false),
+    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[12]),
+    					listen_dev(input2, "input", /*input_handler_2*/ ctx[7], false, false, false, false),
+    					listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[13])
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (!current || dirty & /*upppercaseName*/ 4) set_data_dev(t1, /*upppercaseName*/ ctx[2]);
+    			if (!current || dirty & /*upppercaseName*/ 32) set_data_dev(t1, /*upppercaseName*/ ctx[5]);
     			if (!current || dirty & /*age*/ 2) set_data_dev(t3, /*age*/ ctx[1]);
 
-    			if (dirty & /*name*/ 1 && input.value !== /*name*/ ctx[0]) {
-    				set_input_value(input, /*name*/ ctx[0]);
+    			if (dirty & /*name*/ 1 && input0.value !== /*name*/ ctx[0]) {
+    				set_input_value(input0, /*name*/ ctx[0]);
     			}
+
+    			if (dirty & /*jobTitle*/ 4 && input1.value !== /*jobTitle*/ ctx[2]) {
+    				set_input_value(input1, /*jobTitle*/ ctx[2]);
+    			}
+
+    			if (dirty & /*profPic*/ 8 && input2.value !== /*profPic*/ ctx[3]) {
+    				set_input_value(input2, /*profPic*/ ctx[3]);
+    			}
+
+    			if (dirty & /*jobDescription*/ 16) {
+    				set_input_value(textarea, /*jobDescription*/ ctx[4]);
+    			}
+
+    			const contactcard_changes = {};
+    			if (dirty & /*name*/ 1) contactcard_changes.userName = /*name*/ ctx[0];
+    			if (dirty & /*jobTitle*/ 4) contactcard_changes.jobTitle = /*jobTitle*/ ctx[2];
+    			if (dirty & /*profPic*/ 8) contactcard_changes.profPic = /*profPic*/ ctx[3];
+    			if (dirty & /*jobDescription*/ 16) contactcard_changes.jobDescription = /*jobDescription*/ ctx[4];
+    			contactcard.$set(contactcard_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
@@ -677,8 +864,14 @@ var app = (function () {
     			if (detaching) detach_dev(t5);
     			if (detaching) detach_dev(button);
     			if (detaching) detach_dev(t7);
-    			if (detaching) detach_dev(input);
-    			if (detaching) detach_dev(t8);
+    			if (detaching) detach_dev(div0);
+    			if (detaching) detach_dev(t10);
+    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(t13);
+    			if (detaching) detach_dev(div2);
+    			if (detaching) detach_dev(t16);
+    			if (detaching) detach_dev(div3);
+    			if (detaching) detach_dev(t19);
     			destroy_component(contactcard, detaching);
     			mounted = false;
     			run_all(dispose);
@@ -702,6 +895,9 @@ var app = (function () {
     	validate_slots('App', slots, []);
     	let name = "Garrett";
     	let age = 33;
+    	let jobTitle = "Software Dev";
+    	let profPic = "https://resize.betalist.com/?dpr=2&fit=cover&format=auto&height=300&image=https%3A%2F%2Fcdn.betalist.com%2Fxuulgvf5hmtho0aent23szhnm9hj&signature=c0a1d28b02e9d47b8316a8750e97fbf025467e5e7f6801564cf7c5ec983aa67b";
+    	let jobDescription = "Fullstack engineer with 5 years experience and 5 years experience in public accounting. Graduated the University of Alabama (2014 & 2021) in Accounting and Management Information Systems. Also has a Master of Accountancy from Belmont University (2016)";
 
     	function incrementAge() {
     		$$invalidate(1, age += 1);
@@ -717,19 +913,45 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
+    	function input_handler_2(event) {
+    		bubble.call(this, $$self, event);
+    	}
+
+    	function input_handler_1(event) {
+    		bubble.call(this, $$self, event);
+    	}
+
     	function input_handler(event) {
     		bubble.call(this, $$self, event);
     	}
 
-    	function input_input_handler() {
+    	function input0_input_handler() {
     		name = this.value;
     		$$invalidate(0, name);
+    	}
+
+    	function input1_input_handler() {
+    		jobTitle = this.value;
+    		$$invalidate(2, jobTitle);
+    	}
+
+    	function input2_input_handler() {
+    		profPic = this.value;
+    		$$invalidate(3, profPic);
+    	}
+
+    	function textarea_input_handler() {
+    		jobDescription = this.value;
+    		$$invalidate(4, jobDescription);
     	}
 
     	$$self.$capture_state = () => ({
     		ContactCard,
     		name,
     		age,
+    		jobTitle,
+    		profPic,
+    		jobDescription,
     		incrementAge,
     		changeName,
     		upppercaseName
@@ -738,7 +960,10 @@ var app = (function () {
     	$$self.$inject_state = $$props => {
     		if ('name' in $$props) $$invalidate(0, name = $$props.name);
     		if ('age' in $$props) $$invalidate(1, age = $$props.age);
-    		if ('upppercaseName' in $$props) $$invalidate(2, upppercaseName = $$props.upppercaseName);
+    		if ('jobTitle' in $$props) $$invalidate(2, jobTitle = $$props.jobTitle);
+    		if ('profPic' in $$props) $$invalidate(3, profPic = $$props.profPic);
+    		if ('jobDescription' in $$props) $$invalidate(4, jobDescription = $$props.jobDescription);
+    		if ('upppercaseName' in $$props) $$invalidate(5, upppercaseName = $$props.upppercaseName);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -747,7 +972,7 @@ var app = (function () {
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*name*/ 1) {
-    			$$invalidate(2, upppercaseName = name.toUpperCase());
+    			$$invalidate(5, upppercaseName = name.toUpperCase());
     		}
 
     		if ($$self.$$.dirty & /*name*/ 1) {
@@ -761,7 +986,22 @@ var app = (function () {
     		}
     	};
 
-    	return [name, age, upppercaseName, incrementAge, input_handler, input_input_handler];
+    	return [
+    		name,
+    		age,
+    		jobTitle,
+    		profPic,
+    		jobDescription,
+    		upppercaseName,
+    		incrementAge,
+    		input_handler_2,
+    		input_handler_1,
+    		input_handler,
+    		input0_input_handler,
+    		input1_input_handler,
+    		input2_input_handler,
+    		textarea_input_handler
+    	];
     }
 
     class App extends SvelteComponentDev {

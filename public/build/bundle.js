@@ -35,9 +35,6 @@ var app = (function () {
     function is_empty(obj) {
         return Object.keys(obj).length === 0;
     }
-    function null_to_empty(value) {
-        return value == null ? '' : value;
-    }
 
     const globals = (typeof window !== 'undefined'
         ? window
@@ -79,6 +76,9 @@ var app = (function () {
     }
     function set_input_value(input, value) {
         input.value = value == null ? '' : value;
+    }
+    function toggle_class(element, name, toggle) {
+        element.classList[toggle ? 'add' : 'remove'](name);
     }
     function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
         const e = document.createEvent('CustomEvent');
@@ -450,7 +450,6 @@ var app = (function () {
     	let div0;
     	let img;
     	let img_src_value;
-    	let div0_class_value;
     	let t0;
     	let div1;
     	let h1;
@@ -483,20 +482,21 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = /*profPic*/ ctx[2])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Profile");
     			attr_dev(img, "class", "svelte-1qr1iil");
-    			add_location(img, file$1, 10, 6, 224);
-    			attr_dev(div0, "class", div0_class_value = "" + (null_to_empty(/*profPic*/ ctx[2] ? 'thumb' : 'thumb thumb-palceHolder') + " svelte-1qr1iil"));
+    			add_location(img, file$1, 10, 6, 220);
+    			attr_dev(div0, "class", "thumb svelte-1qr1iil");
+    			toggle_class(div0, "thumb-palceHolder", !/*profPic*/ ctx[2]);
     			add_location(div0, file$1, 9, 4, 159);
     			attr_dev(h1, "class", "svelte-1qr1iil");
-    			add_location(h1, file$1, 13, 6, 305);
+    			add_location(h1, file$1, 13, 6, 301);
     			attr_dev(h2, "class", "svelte-1qr1iil");
-    			add_location(h2, file$1, 14, 6, 331);
+    			add_location(h2, file$1, 14, 6, 327);
     			attr_dev(div1, "class", "user-data svelte-1qr1iil");
-    			add_location(div1, file$1, 12, 4, 275);
+    			add_location(div1, file$1, 12, 4, 271);
     			attr_dev(header, "class", "svelte-1qr1iil");
     			add_location(header, file$1, 8, 2, 146);
-    			add_location(p, file$1, 18, 4, 406);
+    			add_location(p, file$1, 18, 4, 402);
     			attr_dev(div2, "class", "description svelte-1qr1iil");
-    			add_location(div2, file$1, 17, 2, 376);
+    			add_location(div2, file$1, 17, 2, 372);
     			attr_dev(div3, "class", "contact-card svelte-1qr1iil");
     			add_location(div3, file$1, 7, 0, 117);
     		},
@@ -525,8 +525,8 @@ var app = (function () {
     				attr_dev(img, "src", img_src_value);
     			}
 
-    			if (dirty & /*profPic*/ 4 && div0_class_value !== (div0_class_value = "" + (null_to_empty(/*profPic*/ ctx[2] ? 'thumb' : 'thumb thumb-palceHolder') + " svelte-1qr1iil"))) {
-    				attr_dev(div0, "class", div0_class_value);
+    			if (dirty & /*profPic*/ 4) {
+    				toggle_class(div0, "thumb-palceHolder", !/*profPic*/ ctx[2]);
     			}
 
     			if (dirty & /*userName*/ 1) set_data_dev(t1, /*userName*/ ctx[0]);

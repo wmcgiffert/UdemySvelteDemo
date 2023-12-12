@@ -466,23 +466,23 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = /*userImage*/ ctx[3])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", /*userName*/ ctx[0]);
     			attr_dev(img, "class", "svelte-p7z0xn");
-    			add_location(img, file$1, 69, 6, 1115);
+    			add_location(img, file$1, 10, 6, 221);
     			attr_dev(div0, "class", "thumb svelte-p7z0xn");
     			toggle_class(div0, "thumb-placeholder", !/*userImage*/ ctx[3]);
-    			add_location(div0, file$1, 68, 4, 1050);
+    			add_location(div0, file$1, 9, 4, 158);
     			attr_dev(h1, "class", "svelte-p7z0xn");
-    			add_location(h1, file$1, 72, 6, 1199);
+    			add_location(h1, file$1, 13, 6, 305);
     			attr_dev(h2, "class", "svelte-p7z0xn");
-    			add_location(h2, file$1, 73, 6, 1225);
+    			add_location(h2, file$1, 14, 6, 331);
     			attr_dev(div1, "class", "user-data svelte-p7z0xn");
-    			add_location(div1, file$1, 71, 4, 1169);
+    			add_location(div1, file$1, 12, 4, 275);
     			attr_dev(header, "class", "svelte-p7z0xn");
-    			add_location(header, file$1, 67, 2, 1037);
-    			add_location(p, file$1, 77, 4, 1300);
+    			add_location(header, file$1, 8, 2, 145);
+    			add_location(p, file$1, 18, 4, 406);
     			attr_dev(div2, "class", "description svelte-p7z0xn");
-    			add_location(div2, file$1, 76, 2, 1270);
+    			add_location(div2, file$1, 17, 2, 376);
     			attr_dev(div3, "class", "contact-card svelte-p7z0xn");
-    			add_location(div3, file$1, 66, 0, 1008);
+    			add_location(div3, file$1, 7, 0, 116);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -720,36 +720,36 @@ var app = (function () {
     			t11 = space();
     			create_component(contactcard.$$.fragment);
     			attr_dev(label0, "for", "userName");
-    			add_location(label0, file, 18, 4, 271);
+    			add_location(label0, file, 13, 4, 536);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "id", "userName");
-    			add_location(input0, file, 19, 4, 315);
+    			add_location(input0, file, 14, 4, 580);
     			attr_dev(div0, "class", "form-control");
-    			add_location(div0, file, 17, 2, 240);
+    			add_location(div0, file, 12, 2, 505);
     			attr_dev(label1, "for", "jobTitle");
-    			add_location(label1, file, 22, 4, 411);
+    			add_location(label1, file, 17, 4, 676);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "id", "jobTitle");
-    			add_location(input1, file, 23, 4, 455);
+    			add_location(input1, file, 18, 4, 720);
     			attr_dev(div1, "class", "form-control");
-    			add_location(div1, file, 21, 2, 380);
+    			add_location(div1, file, 16, 2, 645);
     			attr_dev(label2, "for", "image");
-    			add_location(label2, file, 26, 4, 552);
+    			add_location(label2, file, 21, 4, 817);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "id", "image");
-    			add_location(input2, file, 27, 4, 593);
+    			add_location(input2, file, 22, 4, 858);
     			attr_dev(div2, "class", "form-control");
-    			add_location(div2, file, 25, 2, 521);
+    			add_location(div2, file, 20, 2, 786);
     			attr_dev(label3, "for", "desc");
-    			add_location(label3, file, 30, 4, 687);
+    			add_location(label3, file, 25, 4, 952);
     			attr_dev(textarea, "rows", "3");
     			attr_dev(textarea, "id", "desc");
-    			add_location(textarea, file, 31, 4, 729);
+    			add_location(textarea, file, 26, 4, 994);
     			attr_dev(div3, "class", "form-control");
-    			add_location(div3, file, 29, 2, 656);
+    			add_location(div3, file, 24, 2, 921);
     			attr_dev(div4, "id", "form");
     			attr_dev(div4, "class", "svelte-pd4ajg");
-    			add_location(div4, file, 16, 0, 222);
+    			add_location(div4, file, 11, 0, 487);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -850,10 +850,10 @@ var app = (function () {
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
-    	let name = "Max";
-    	let title = "";
-    	let image = "";
-    	let description = "";
+    	let name = "Garrett";
+    	let title = "Software Developer";
+    	let image = "https://resize.betalist.com/?dpr=2&fit=cover&format=auto&height=300&image=https%3A%2F%2Fcdn.betalist.com%2Fxuulgvf5hmtho0aent23szhnm9hj&signature=c0a1d28b02e9d47b8316a8750e97fbf025467e5e7f6801564cf7c5ec983aa67b";
+    	let description = "Stanfort Graduate with 10 years of software development experince with the Millie Mouse Company.";
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {

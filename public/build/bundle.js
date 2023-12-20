@@ -694,7 +694,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (64:0) {#if displayed && formState}
+    // (59:0) {#if formState === false}
     function create_if_block(ctx) {
     	let p;
 
@@ -702,7 +702,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Invalid Input!";
-    			add_location(p, file, 64, 2, 1871);
+    			add_location(p, file, 59, 2, 1731);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -716,14 +716,44 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(64:0) {#if displayed && formState}",
+    		source: "(59:0) {#if formState === false}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:0) {#each contactList as item}
+    // (70:0) {:else}
+    function create_else_block(ctx) {
+    	let p;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "0 user contacts were found please add some!";
+    			add_location(p, file, 70, 2, 1927);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    		},
+    		p: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_else_block.name,
+    		type: "else",
+    		source: "(70:0) {:else}",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (63:0) {#each contactList as item}
     function create_each_block(ctx) {
     	let contactcard;
     	let current;
@@ -748,10 +778,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const contactcard_changes = {};
-    			if (dirty & /*contactList*/ 64) contactcard_changes.userName = /*item*/ ctx[12].userName;
-    			if (dirty & /*contactList*/ 64) contactcard_changes.jobTitle = /*item*/ ctx[12].title;
-    			if (dirty & /*contactList*/ 64) contactcard_changes.bio = /*item*/ ctx[12].description;
-    			if (dirty & /*contactList*/ 64) contactcard_changes.userImage = /*item*/ ctx[12].image;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.userName = /*item*/ ctx[12].userName;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.jobTitle = /*item*/ ctx[12].title;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.bio = /*item*/ ctx[12].description;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.userImage = /*item*/ ctx[12].image;
     			contactcard.$set(contactcard_changes);
     		},
     		i: function intro(local) {
@@ -772,7 +802,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(68:0) {#each contactList as item}",
+    		source: "(63:0) {#each contactList as item}",
     		ctx
     	});
 
@@ -808,8 +838,8 @@ var app = (function () {
     	let current;
     	let mounted;
     	let dispose;
-    	let if_block = /*displayed*/ ctx[4] && /*formState*/ ctx[5] && create_if_block(ctx);
-    	let each_value = /*contactList*/ ctx[6];
+    	let if_block = /*formState*/ ctx[4] === false && create_if_block(ctx);
+    	let each_value = /*contactList*/ ctx[5];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -820,6 +850,12 @@ var app = (function () {
     	const out = i => transition_out(each_blocks[i], 1, 1, () => {
     		each_blocks[i] = null;
     	});
+
+    	let each_1_else = null;
+
+    	if (!each_value.length) {
+    		each_1_else = create_else_block(ctx);
+    	}
 
     	const block = {
     		c: function create() {
@@ -859,38 +895,43 @@ var app = (function () {
     			}
 
     			each_1_anchor = empty();
+
+    			if (each_1_else) {
+    				each_1_else.c();
+    			}
+
     			attr_dev(label0, "for", "userName");
-    			add_location(label0, file, 44, 4, 1242);
+    			add_location(label0, file, 39, 4, 1105);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "id", "userName");
-    			add_location(input0, file, 45, 4, 1286);
+    			add_location(input0, file, 40, 4, 1149);
     			attr_dev(div0, "class", "form-control");
-    			add_location(div0, file, 43, 2, 1211);
+    			add_location(div0, file, 38, 2, 1074);
     			attr_dev(label1, "for", "jobTitle");
-    			add_location(label1, file, 48, 4, 1386);
+    			add_location(label1, file, 43, 4, 1249);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "id", "jobTitle");
-    			add_location(input1, file, 49, 4, 1430);
+    			add_location(input1, file, 44, 4, 1293);
     			attr_dev(div1, "class", "form-control");
-    			add_location(div1, file, 47, 2, 1355);
+    			add_location(div1, file, 42, 2, 1218);
     			attr_dev(label2, "for", "image");
-    			add_location(label2, file, 52, 4, 1527);
+    			add_location(label2, file, 47, 4, 1390);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "id", "image");
-    			add_location(input2, file, 53, 4, 1568);
+    			add_location(input2, file, 48, 4, 1431);
     			attr_dev(div2, "class", "form-control");
-    			add_location(div2, file, 51, 2, 1496);
+    			add_location(div2, file, 46, 2, 1359);
     			attr_dev(label3, "for", "desc");
-    			add_location(label3, file, 56, 4, 1662);
+    			add_location(label3, file, 51, 4, 1525);
     			attr_dev(textarea, "rows", "3");
     			attr_dev(textarea, "id", "desc");
-    			add_location(textarea, file, 57, 4, 1704);
+    			add_location(textarea, file, 52, 4, 1567);
     			attr_dev(div3, "class", "form-control");
-    			add_location(div3, file, 55, 2, 1631);
+    			add_location(div3, file, 50, 2, 1494);
     			attr_dev(div4, "id", "form");
     			attr_dev(div4, "class", "svelte-pd4ajg");
-    			add_location(div4, file, 42, 0, 1193);
-    			add_location(button, file, 61, 0, 1778);
+    			add_location(div4, file, 37, 0, 1056);
+    			add_location(button, file, 56, 0, 1641);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -933,15 +974,20 @@ var app = (function () {
     			}
 
     			insert_dev(target, each_1_anchor, anchor);
+
+    			if (each_1_else) {
+    				each_1_else.m(target, anchor);
+    			}
+
     			current = true;
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[8]),
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[9]),
-    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[10]),
-    					listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[11]),
-    					listen_dev(button, "click", /*showContactInfo*/ ctx[7], false, false, false, false)
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[7]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[8]),
+    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[9]),
+    					listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[10]),
+    					listen_dev(button, "click", /*showContactInfo*/ ctx[6], false, false, false, false)
     				];
 
     				mounted = true;
@@ -964,7 +1010,7 @@ var app = (function () {
     				set_input_value(textarea, /*description*/ ctx[3]);
     			}
 
-    			if (/*displayed*/ ctx[4] && /*formState*/ ctx[5]) {
+    			if (/*formState*/ ctx[4] === false) {
     				if (if_block) ; else {
     					if_block = create_if_block(ctx);
     					if_block.c();
@@ -975,8 +1021,8 @@ var app = (function () {
     				if_block = null;
     			}
 
-    			if (dirty & /*contactList*/ 64) {
-    				each_value = /*contactList*/ ctx[6];
+    			if (dirty & /*contactList*/ 32) {
+    				each_value = /*contactList*/ ctx[5];
     				validate_each_argument(each_value);
     				let i;
 
@@ -1001,6 +1047,17 @@ var app = (function () {
     				}
 
     				check_outros();
+
+    				if (!each_value.length && each_1_else) {
+    					each_1_else.p(ctx, dirty);
+    				} else if (!each_value.length) {
+    					each_1_else = create_else_block(ctx);
+    					each_1_else.c();
+    					each_1_else.m(each_1_anchor.parentNode, each_1_anchor);
+    				} else if (each_1_else) {
+    					each_1_else.d(1);
+    					each_1_else = null;
+    				}
     			}
     		},
     		i: function intro(local) {
@@ -1030,6 +1087,7 @@ var app = (function () {
     			if (detaching) detach_dev(t14);
     			destroy_each(each_blocks, detaching);
     			if (detaching) detach_dev(each_1_anchor);
+    			if (each_1_else) each_1_else.d(detaching);
     			mounted = false;
     			run_all(dispose);
     		}
@@ -1059,16 +1117,10 @@ var app = (function () {
 
     	function showContactInfo() {
     		if (userName.trim().length === 0 || title.trim().length === 0 || image.trim().length === 0 || description.trim().length === 0) {
-    			$$invalidate(5, formState = false);
+    			$$invalidate(4, formState = false);
     		} else {
-    			$$invalidate(6, contactList = [...contactList, { userName, title, image, description }]);
-    			$$invalidate(5, formState = true);
-    		}
-
-    		if (displayed === false) {
-    			$$invalidate(4, displayed = true);
-    		} else if (displayed && formState === false) {
-    			$$invalidate(4, displayed = false);
+    			$$invalidate(5, contactList = [...contactList, { userName, title, image, description }]);
+    			$$invalidate(4, formState = true);
     		}
 
     		console.log(contactList);
@@ -1117,9 +1169,9 @@ var app = (function () {
     		if ('title' in $$props) $$invalidate(1, title = $$props.title);
     		if ('image' in $$props) $$invalidate(2, image = $$props.image);
     		if ('description' in $$props) $$invalidate(3, description = $$props.description);
-    		if ('displayed' in $$props) $$invalidate(4, displayed = $$props.displayed);
-    		if ('formState' in $$props) $$invalidate(5, formState = $$props.formState);
-    		if ('contactList' in $$props) $$invalidate(6, contactList = $$props.contactList);
+    		if ('displayed' in $$props) displayed = $$props.displayed;
+    		if ('formState' in $$props) $$invalidate(4, formState = $$props.formState);
+    		if ('contactList' in $$props) $$invalidate(5, contactList = $$props.contactList);
     	};
 
     	if ($$props && "$$inject" in $$props) {
@@ -1131,7 +1183,6 @@ var app = (function () {
     		title,
     		image,
     		description,
-    		displayed,
     		formState,
     		contactList,
     		showContactInfo,

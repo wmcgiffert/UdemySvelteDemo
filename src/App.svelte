@@ -31,11 +31,6 @@
       ];
       formState = true;
     }
-    if (displayed === false) {
-      displayed = true;
-    } else if (displayed && formState === false) {
-      displayed = false;
-    }
     console.log(contactList);
   }
 </script>
@@ -61,7 +56,7 @@
 
 <button on:click={showContactInfo}>Add Contact Card</button>
 
-{#if displayed && formState}
+{#if formState === false}
   <p>Invalid Input!</p>
 {/if}
 
@@ -72,6 +67,8 @@
     bio={item.description}
     userImage={item.image}
   />
+{:else}
+  <p>0 user contacts were found please add some!</p>
 {/each}
 
 <style>

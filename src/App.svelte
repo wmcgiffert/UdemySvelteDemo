@@ -7,9 +7,9 @@
     "https://resize.betalist.com/?dpr=2&fit=cover&format=auto&height=300&image=https%3A%2F%2Fcdn.betalist.com%2Fxuulgvf5hmtho0aent23szhnm9hj&signature=c0a1d28b02e9d47b8316a8750e97fbf025467e5e7f6801564cf7c5ec983aa67b";
   let description =
     "Stanfort Graduate with 10 years of software development experience with the Millie Mouse Company.";
-
   let displayed = false;
   let formState = true;
+  let contactList = [];
 
   function showContactInfo() {
     if (
@@ -20,13 +20,23 @@
     ) {
       formState = false;
     } else {
+      contactList = [
+        ...contactList,
+        {
+          userName: userName,
+          title: title,
+          image: image,
+          description: description,
+        },
+      ];
       formState = true;
     }
     if (displayed === false) {
       displayed = true;
-    } else {
+    } else if (displayed && formState === false) {
       displayed = false;
     }
+    console.log(contactList);
   }
 </script>
 
@@ -52,15 +62,17 @@
 <button on:click={showContactInfo}>Add Contact Card</button>
 
 {#if displayed && formState}
-  <ContactCard
-    {userName}
-    jobTitle={title}
-    bio={description}
-    userImage={image}
-  />
-{:else if formState === false}
   <p>Invalid Input!</p>
 {/if}
+
+{#each contactList as item}
+  <ContactCard
+    userName={item.userName}
+    jobTitle={item.title}
+    bio={item.description}
+    userImage={item.image}
+  />
+{/each}
 
 <style>
   #form {

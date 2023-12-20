@@ -19,7 +19,6 @@
       description.trim().length === 0
     ) {
       formState = false;
-      return;
     } else {
       formState = true;
     }

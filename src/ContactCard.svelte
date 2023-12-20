@@ -1,7 +1,7 @@
 <script>
   export let userName;
   export let jobTitle;
-  export let description;
+  export let bio;
   export let userImage;
 </script>
 
@@ -16,7 +16,7 @@
     </div>
   </header>
   <div class="description">
-    <p>{description}</p>
+    <p>{bio}</p>
   </div>
 </div>
 

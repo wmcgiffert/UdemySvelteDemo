@@ -1,6 +1,7 @@
 <script>
   import ContactCard from "./ContactCard.svelte";
 
+  $: id = 1;
   let userName = "Garrett McG";
   let title = "Software Developer";
   let image =
@@ -23,26 +24,26 @@
       contactList = [
         ...contactList,
         {
+          ID: id,
           userName: userName,
           title: title,
           image: image,
           description: description,
-          Id: contactList.length + 1,
         },
-      ].sort(function (a, b) {
-          a.id - b.id;
-        })
-        .reverse();
+      ];
+      contactList.sort((a, b)=>
+        b.ID - a.ID);
       formState = true;
+      id += 1;
     }
     console.log(contactList);
   }
 
-  function delFirst(){
+  function delFirst() {
     contactList = contactList.slice(1);
   }
-  function delLast(){
-    contactList = contactList.slice(contactList.length - 1);
+  function delLast() {
+    contactList = contactList.slice(0, -1);
   }
 </script>
 
@@ -75,7 +76,7 @@
 
 {#each contactList as item, i}
   <h2>ID: {i + 1}</h2>
-  <h2>ID: {item.Id}</h2>
+  <h2>ID: {item.ID}</h2>
   <ContactCard
     userName={item.userName}
     jobTitle={item.title}

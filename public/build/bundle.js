@@ -690,12 +690,12 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[13] = list[i];
-    	child_ctx[15] = i;
+    	child_ctx[14] = list[i];
+    	child_ctx[16] = i;
     	return child_ctx;
     }
 
-    // (72:0) {#if formState === false}
+    // (73:0) {#if formState === false}
     function create_if_block(ctx) {
     	let p;
 
@@ -703,7 +703,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Invalid Input!";
-    			add_location(p, file, 72, 2, 2074);
+    			add_location(p, file, 73, 2, 2045);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -717,14 +717,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(72:0) {#if formState === false}",
+    		source: "(73:0) {#if formState === false}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (85:0) {:else}
+    // (86:0) {:else}
     function create_else_block(ctx) {
     	let p;
 
@@ -732,7 +732,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "0 user contacts were found please add some!";
-    			add_location(p, file, 85, 2, 2321);
+    			add_location(p, file, 86, 2, 2292);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -747,23 +747,23 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(85:0) {:else}",
+    		source: "(86:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (76:0) {#each contactList as item, i}
+    // (77:0) {#each contactList as item, i}
     function create_each_block(ctx) {
     	let h20;
     	let t0;
-    	let t1_value = /*i*/ ctx[15] + 1 + "";
+    	let t1_value = /*i*/ ctx[16] + 1 + "";
     	let t1;
     	let t2;
     	let h21;
     	let t3;
-    	let t4_value = /*item*/ ctx[13].Id + "";
+    	let t4_value = /*item*/ ctx[14].ID + "";
     	let t4;
     	let t5;
     	let contactcard;
@@ -771,10 +771,10 @@ var app = (function () {
 
     	contactcard = new ContactCard({
     			props: {
-    				userName: /*item*/ ctx[13].userName,
-    				jobTitle: /*item*/ ctx[13].title,
-    				bio: /*item*/ ctx[13].description,
-    				userImage: /*item*/ ctx[13].image
+    				userName: /*item*/ ctx[14].userName,
+    				jobTitle: /*item*/ ctx[14].title,
+    				bio: /*item*/ ctx[14].description,
+    				userImage: /*item*/ ctx[14].image
     			},
     			$$inline: true
     		});
@@ -790,8 +790,8 @@ var app = (function () {
     			t4 = text(t4_value);
     			t5 = space();
     			create_component(contactcard.$$.fragment);
-    			add_location(h20, file, 76, 2, 2136);
-    			add_location(h21, file, 77, 2, 2159);
+    			add_location(h20, file, 77, 2, 2107);
+    			add_location(h21, file, 78, 2, 2130);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h20, anchor);
@@ -806,12 +806,12 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if ((!current || dirty & /*contactList*/ 32) && t4_value !== (t4_value = /*item*/ ctx[13].Id + "")) set_data_dev(t4, t4_value);
+    			if ((!current || dirty & /*contactList*/ 32) && t4_value !== (t4_value = /*item*/ ctx[14].ID + "")) set_data_dev(t4, t4_value);
     			const contactcard_changes = {};
-    			if (dirty & /*contactList*/ 32) contactcard_changes.userName = /*item*/ ctx[13].userName;
-    			if (dirty & /*contactList*/ 32) contactcard_changes.jobTitle = /*item*/ ctx[13].title;
-    			if (dirty & /*contactList*/ 32) contactcard_changes.bio = /*item*/ ctx[13].description;
-    			if (dirty & /*contactList*/ 32) contactcard_changes.userImage = /*item*/ ctx[13].image;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.userName = /*item*/ ctx[14].userName;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.jobTitle = /*item*/ ctx[14].title;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.bio = /*item*/ ctx[14].description;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.userImage = /*item*/ ctx[14].image;
     			contactcard.$set(contactcard_changes);
     		},
     		i: function intro(local) {
@@ -836,7 +836,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(76:0) {#each contactList as item, i}",
+    		source: "(77:0) {#each contactList as item, i}",
     		ctx
     	});
 
@@ -945,39 +945,39 @@ var app = (function () {
     			}
 
     			attr_dev(label0, "for", "userName");
-    			add_location(label0, file, 50, 4, 1350);
+    			add_location(label0, file, 51, 4, 1321);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "id", "userName");
-    			add_location(input0, file, 51, 4, 1394);
+    			add_location(input0, file, 52, 4, 1365);
     			attr_dev(div0, "class", "form-control");
-    			add_location(div0, file, 49, 2, 1319);
+    			add_location(div0, file, 50, 2, 1290);
     			attr_dev(label1, "for", "jobTitle");
-    			add_location(label1, file, 54, 4, 1494);
+    			add_location(label1, file, 55, 4, 1465);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "id", "jobTitle");
-    			add_location(input1, file, 55, 4, 1538);
+    			add_location(input1, file, 56, 4, 1509);
     			attr_dev(div1, "class", "form-control");
-    			add_location(div1, file, 53, 2, 1463);
+    			add_location(div1, file, 54, 2, 1434);
     			attr_dev(label2, "for", "image");
-    			add_location(label2, file, 58, 4, 1635);
+    			add_location(label2, file, 59, 4, 1606);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "id", "image");
-    			add_location(input2, file, 59, 4, 1676);
+    			add_location(input2, file, 60, 4, 1647);
     			attr_dev(div2, "class", "form-control");
-    			add_location(div2, file, 57, 2, 1604);
+    			add_location(div2, file, 58, 2, 1575);
     			attr_dev(label3, "for", "desc");
-    			add_location(label3, file, 62, 4, 1770);
+    			add_location(label3, file, 63, 4, 1741);
     			attr_dev(textarea, "rows", "3");
     			attr_dev(textarea, "id", "desc");
-    			add_location(textarea, file, 63, 4, 1812);
+    			add_location(textarea, file, 64, 4, 1783);
     			attr_dev(div3, "class", "form-control");
-    			add_location(div3, file, 61, 2, 1739);
+    			add_location(div3, file, 62, 2, 1710);
     			attr_dev(div4, "id", "form");
     			attr_dev(div4, "class", "svelte-pd4ajg");
-    			add_location(div4, file, 48, 0, 1301);
-    			add_location(button0, file, 67, 0, 1886);
-    			add_location(button1, file, 68, 0, 1947);
-    			add_location(button2, file, 69, 0, 1997);
+    			add_location(div4, file, 49, 0, 1272);
+    			add_location(button0, file, 68, 0, 1857);
+    			add_location(button1, file, 69, 0, 1918);
+    			add_location(button2, file, 70, 0, 1968);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1161,6 +1161,7 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
+    	let id;
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
     	let userName = "Garrett McG";
@@ -1177,17 +1178,17 @@ var app = (function () {
     			$$invalidate(5, contactList = [
     				...contactList,
     				{
+    					ID: id,
     					userName,
     					title,
     					image,
-    					description,
-    					Id: contactList.length + 1
+    					description
     				}
-    			].sort(function (a, b) {
-    				a.id - b.id;
-    			}).reverse());
+    			]);
 
+    			contactList.sort((a, b) => b.ID - a.ID);
     			$$invalidate(4, formState = true);
+    			id += 1;
     		}
 
     		console.log(contactList);
@@ -1198,7 +1199,7 @@ var app = (function () {
     	}
 
     	function delLast() {
-    		$$invalidate(5, contactList = contactList.slice(contactList.length - 1));
+    		$$invalidate(5, contactList = contactList.slice(0, -1));
     	}
 
     	const writable_props = [];
@@ -1237,7 +1238,8 @@ var app = (function () {
     		contactList,
     		showContactInfo,
     		delFirst,
-    		delLast
+    		delLast,
+    		id
     	});
 
     	$$self.$inject_state = $$props => {
@@ -1247,11 +1249,14 @@ var app = (function () {
     		if ('description' in $$props) $$invalidate(3, description = $$props.description);
     		if ('formState' in $$props) $$invalidate(4, formState = $$props.formState);
     		if ('contactList' in $$props) $$invalidate(5, contactList = $$props.contactList);
+    		if ('id' in $$props) id = $$props.id;
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
+
+    	id = 1;
 
     	return [
     		userName,

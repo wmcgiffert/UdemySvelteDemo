@@ -691,10 +691,11 @@ var app = (function () {
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
     	child_ctx[11] = list[i];
+    	child_ctx[13] = i;
     	return child_ctx;
     }
 
-    // (59:0) {#if formState === false}
+    // (60:0) {#if formState === false}
     function create_if_block(ctx) {
     	let p;
 
@@ -702,7 +703,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Invalid Input!";
-    			add_location(p, file, 59, 2, 1707);
+    			add_location(p, file, 60, 2, 1745);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -716,14 +717,14 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(59:0) {#if formState === false}",
+    		source: "(60:0) {#if formState === false}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (70:0) {:else}
+    // (72:0) {:else}
     function create_else_block(ctx) {
     	let p;
 
@@ -731,7 +732,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "0 user contacts were found please add some!";
-    			add_location(p, file, 70, 2, 1903);
+    			add_location(p, file, 72, 2, 1967);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -746,15 +747,20 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(70:0) {:else}",
+    		source: "(72:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (63:0) {#each contactList as item}
+    // (64:0) {#each contactList as item, i}
     function create_each_block(ctx) {
+    	let h2;
+    	let t0;
+    	let t1_value = /*i*/ ctx[13] + 1 + "";
+    	let t1;
+    	let t2;
     	let contactcard;
     	let current;
 
@@ -770,9 +776,18 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
+    			h2 = element("h2");
+    			t0 = text("ID: ");
+    			t1 = text(t1_value);
+    			t2 = space();
     			create_component(contactcard.$$.fragment);
+    			add_location(h2, file, 64, 2, 1807);
     		},
     		m: function mount(target, anchor) {
+    			insert_dev(target, h2, anchor);
+    			append_dev(h2, t0);
+    			append_dev(h2, t1);
+    			insert_dev(target, t2, anchor);
     			mount_component(contactcard, target, anchor);
     			current = true;
     		},
@@ -794,6 +809,8 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h2);
+    			if (detaching) detach_dev(t2);
     			destroy_component(contactcard, detaching);
     		}
     	};
@@ -802,7 +819,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(63:0) {#each contactList as item}",
+    		source: "(64:0) {#each contactList as item, i}",
     		ctx
     	});
 
@@ -901,37 +918,37 @@ var app = (function () {
     			}
 
     			attr_dev(label0, "for", "userName");
-    			add_location(label0, file, 39, 4, 1081);
+    			add_location(label0, file, 40, 4, 1119);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "id", "userName");
-    			add_location(input0, file, 40, 4, 1125);
+    			add_location(input0, file, 41, 4, 1163);
     			attr_dev(div0, "class", "form-control");
-    			add_location(div0, file, 38, 2, 1050);
+    			add_location(div0, file, 39, 2, 1088);
     			attr_dev(label1, "for", "jobTitle");
-    			add_location(label1, file, 43, 4, 1225);
+    			add_location(label1, file, 44, 4, 1263);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "id", "jobTitle");
-    			add_location(input1, file, 44, 4, 1269);
+    			add_location(input1, file, 45, 4, 1307);
     			attr_dev(div1, "class", "form-control");
-    			add_location(div1, file, 42, 2, 1194);
+    			add_location(div1, file, 43, 2, 1232);
     			attr_dev(label2, "for", "image");
-    			add_location(label2, file, 47, 4, 1366);
+    			add_location(label2, file, 48, 4, 1404);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "id", "image");
-    			add_location(input2, file, 48, 4, 1407);
+    			add_location(input2, file, 49, 4, 1445);
     			attr_dev(div2, "class", "form-control");
-    			add_location(div2, file, 46, 2, 1335);
+    			add_location(div2, file, 47, 2, 1373);
     			attr_dev(label3, "for", "desc");
-    			add_location(label3, file, 51, 4, 1501);
+    			add_location(label3, file, 52, 4, 1539);
     			attr_dev(textarea, "rows", "3");
     			attr_dev(textarea, "id", "desc");
-    			add_location(textarea, file, 52, 4, 1543);
+    			add_location(textarea, file, 53, 4, 1581);
     			attr_dev(div3, "class", "form-control");
-    			add_location(div3, file, 50, 2, 1470);
+    			add_location(div3, file, 51, 2, 1508);
     			attr_dev(div4, "id", "form");
     			attr_dev(div4, "class", "svelte-pd4ajg");
-    			add_location(div4, file, 37, 0, 1032);
-    			add_location(button, file, 56, 0, 1617);
+    			add_location(div4, file, 38, 0, 1070);
+    			add_location(button, file, 57, 0, 1655);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1118,7 +1135,17 @@ var app = (function () {
     		if (userName.trim().length === 0 || title.trim().length === 0 || image.trim().length === 0 || description.trim().length === 0) {
     			$$invalidate(4, formState = false);
     		} else {
-    			$$invalidate(5, contactList = [...contactList, { userName, title, image, description }]);
+    			$$invalidate(5, contactList = [
+    				...contactList,
+    				{
+    					userName,
+    					title,
+    					image,
+    					description,
+    					Id: contactList.length + 1
+    				}
+    			]);
+
     			$$invalidate(4, formState = true);
     		}
 

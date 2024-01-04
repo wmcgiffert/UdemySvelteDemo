@@ -27,6 +27,7 @@
           title: title,
           image: image,
           description: description,
+          Id: contactList.length + 1,
         },
       ];
       formState = true;
@@ -60,7 +61,8 @@
   <p>Invalid Input!</p>
 {/if}
 
-{#each contactList as item}
+{#each contactList as item, i}
+  <h2>ID: {i + 1}</h2>
   <ContactCard
     userName={item.userName}
     jobTitle={item.title}

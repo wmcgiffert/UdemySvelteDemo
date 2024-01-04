@@ -690,7 +690,7 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[12] = list[i];
+    	child_ctx[11] = list[i];
     	return child_ctx;
     }
 
@@ -702,7 +702,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "Invalid Input!";
-    			add_location(p, file, 59, 2, 1731);
+    			add_location(p, file, 59, 2, 1707);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -731,7 +731,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "0 user contacts were found please add some!";
-    			add_location(p, file, 70, 2, 1927);
+    			add_location(p, file, 70, 2, 1903);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -760,10 +760,10 @@ var app = (function () {
 
     	contactcard = new ContactCard({
     			props: {
-    				userName: /*item*/ ctx[12].userName,
-    				jobTitle: /*item*/ ctx[12].title,
-    				bio: /*item*/ ctx[12].description,
-    				userImage: /*item*/ ctx[12].image
+    				userName: /*item*/ ctx[11].userName,
+    				jobTitle: /*item*/ ctx[11].title,
+    				bio: /*item*/ ctx[11].description,
+    				userImage: /*item*/ ctx[11].image
     			},
     			$$inline: true
     		});
@@ -778,10 +778,10 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const contactcard_changes = {};
-    			if (dirty & /*contactList*/ 32) contactcard_changes.userName = /*item*/ ctx[12].userName;
-    			if (dirty & /*contactList*/ 32) contactcard_changes.jobTitle = /*item*/ ctx[12].title;
-    			if (dirty & /*contactList*/ 32) contactcard_changes.bio = /*item*/ ctx[12].description;
-    			if (dirty & /*contactList*/ 32) contactcard_changes.userImage = /*item*/ ctx[12].image;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.userName = /*item*/ ctx[11].userName;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.jobTitle = /*item*/ ctx[11].title;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.bio = /*item*/ ctx[11].description;
+    			if (dirty & /*contactList*/ 32) contactcard_changes.userImage = /*item*/ ctx[11].image;
     			contactcard.$set(contactcard_changes);
     		},
     		i: function intro(local) {
@@ -901,37 +901,37 @@ var app = (function () {
     			}
 
     			attr_dev(label0, "for", "userName");
-    			add_location(label0, file, 39, 4, 1105);
+    			add_location(label0, file, 39, 4, 1081);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "id", "userName");
-    			add_location(input0, file, 40, 4, 1149);
+    			add_location(input0, file, 40, 4, 1125);
     			attr_dev(div0, "class", "form-control");
-    			add_location(div0, file, 38, 2, 1074);
+    			add_location(div0, file, 38, 2, 1050);
     			attr_dev(label1, "for", "jobTitle");
-    			add_location(label1, file, 43, 4, 1249);
+    			add_location(label1, file, 43, 4, 1225);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "id", "jobTitle");
-    			add_location(input1, file, 44, 4, 1293);
+    			add_location(input1, file, 44, 4, 1269);
     			attr_dev(div1, "class", "form-control");
-    			add_location(div1, file, 42, 2, 1218);
+    			add_location(div1, file, 42, 2, 1194);
     			attr_dev(label2, "for", "image");
-    			add_location(label2, file, 47, 4, 1390);
+    			add_location(label2, file, 47, 4, 1366);
     			attr_dev(input2, "type", "text");
     			attr_dev(input2, "id", "image");
-    			add_location(input2, file, 48, 4, 1431);
+    			add_location(input2, file, 48, 4, 1407);
     			attr_dev(div2, "class", "form-control");
-    			add_location(div2, file, 46, 2, 1359);
+    			add_location(div2, file, 46, 2, 1335);
     			attr_dev(label3, "for", "desc");
-    			add_location(label3, file, 51, 4, 1525);
+    			add_location(label3, file, 51, 4, 1501);
     			attr_dev(textarea, "rows", "3");
     			attr_dev(textarea, "id", "desc");
-    			add_location(textarea, file, 52, 4, 1567);
+    			add_location(textarea, file, 52, 4, 1543);
     			attr_dev(div3, "class", "form-control");
-    			add_location(div3, file, 50, 2, 1494);
+    			add_location(div3, file, 50, 2, 1470);
     			attr_dev(div4, "id", "form");
     			attr_dev(div4, "class", "svelte-pd4ajg");
-    			add_location(div4, file, 37, 0, 1056);
-    			add_location(button, file, 56, 0, 1641);
+    			add_location(div4, file, 37, 0, 1032);
+    			add_location(button, file, 56, 0, 1617);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1111,7 +1111,6 @@ var app = (function () {
     	let title = "Software Developer";
     	let image = "https://resize.betalist.com/?dpr=2&fit=cover&format=auto&height=300&image=https%3A%2F%2Fcdn.betalist.com%2Fxuulgvf5hmtho0aent23szhnm9hj&signature=c0a1d28b02e9d47b8316a8750e97fbf025467e5e7f6801564cf7c5ec983aa67b";
     	let description = "Stanfort Graduate with 10 years of software development experience with the Millie Mouse Company.";
-    	let displayed = false;
     	let formState = true;
     	let contactList = [];
 
@@ -1158,7 +1157,6 @@ var app = (function () {
     		title,
     		image,
     		description,
-    		displayed,
     		formState,
     		contactList,
     		showContactInfo
@@ -1169,7 +1167,6 @@ var app = (function () {
     		if ('title' in $$props) $$invalidate(1, title = $$props.title);
     		if ('image' in $$props) $$invalidate(2, image = $$props.image);
     		if ('description' in $$props) $$invalidate(3, description = $$props.description);
-    		if ('displayed' in $$props) displayed = $$props.displayed;
     		if ('formState' in $$props) $$invalidate(4, formState = $$props.formState);
     		if ('contactList' in $$props) $$invalidate(5, contactList = $$props.contactList);
     	};

@@ -7,7 +7,7 @@
     "https://resize.betalist.com/?dpr=2&fit=cover&format=auto&height=300&image=https%3A%2F%2Fcdn.betalist.com%2Fxuulgvf5hmtho0aent23szhnm9hj&signature=c0a1d28b02e9d47b8316a8750e97fbf025467e5e7f6801564cf7c5ec983aa67b";
   let description =
     "Stanfort Graduate with 10 years of software development experience with the Millie Mouse Company.";
-  let displayed = false;
+
   let formState = true;
   let contactList = [];
 

@@ -29,10 +29,20 @@
           description: description,
           Id: contactList.length + 1,
         },
-      ];
+      ].sort(function (a, b) {
+          a.id - b.id;
+        })
+        .reverse();
       formState = true;
     }
     console.log(contactList);
+  }
+
+  function delFirst(){
+    contactList = contactList.slice(1);
+  }
+  function delLast(){
+    contactList = contactList.slice(contactList.length - 1);
   }
 </script>
 
@@ -56,6 +66,8 @@
 </div>
 
 <button on:click={showContactInfo}>Add Contact Card</button>
+<button on:click={delFirst}>Delete First</button>
+<button on:click={delLast}>Delete Last</button>
 
 {#if formState === false}
   <p>Invalid Input!</p>
@@ -63,6 +75,7 @@
 
 {#each contactList as item, i}
   <h2>ID: {i + 1}</h2>
+  <h2>ID: {item.Id}</h2>
   <ContactCard
     userName={item.userName}
     jobTitle={item.title}

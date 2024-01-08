@@ -74,7 +74,7 @@
   <p>Invalid Input!</p>
 {/if}
 
-{#each contactList as item, i(contactList.ID)}
+{#each contactList as item, i}
   <h2>ID: {i + 1}</h2>
   <h2>ID: {item.ID}</h2>
   <ContactCard

@@ -45,6 +45,9 @@
   function delLast() {
     contactList = contactList.slice(0, -1);
   }
+  function deleteById(delId) {
+    contactList = contactList.filter(contact => contact.ID != delId); 
+  }
 </script>
 
 <div id="form">
@@ -78,10 +81,12 @@
   <h2>ID: {i + 1}</h2>
   <h2>ID: {item.ID}</h2>
   <ContactCard
+    id={item.ID}
     userName={item.userName}
     jobTitle={item.title}
     bio={item.description}
     userImage={item.image}
+    on:deleteContact={() => deleteById(item.ID)}
   />
 {:else}
   <p>0 user contacts were found please add some!</p>

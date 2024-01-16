@@ -1,8 +1,20 @@
 <script>
+  import {createEventDispatcher} from 'svelte';
+
+  const dispatch = createEventDispatcher();
+
   export let userName;
   export let jobTitle;
   export let bio;
   export let userImage;
+  export let id;
+
+
+  function handleDelete(){
+    dispatch('deleteContact', id); 
+    console.log("Clicked on component with an Id of " + id);
+  }
+
 </script>
 
 <div class="contact-card">
@@ -17,6 +29,9 @@
   </header>
   <div class="description">
     <p>{bio}</p>
+  </div>
+  <div class="deleteButton">
+    <button on:click={handleDelete}>Delete</button>
   </div>
 </div>
 
